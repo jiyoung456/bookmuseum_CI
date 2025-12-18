@@ -4,7 +4,12 @@ phases:
   install:
     runtime-versions:
       java: corretto17
+
   build:
     commands:
       - chmod +x gradlew
-      - ./gradlew test
+      - ./gradlew build
+
+artifacts:
+  files:
+    - build/libs/*.jar
