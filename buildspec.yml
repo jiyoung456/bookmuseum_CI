@@ -5,24 +5,14 @@ phases:
     runtime-versions:
       java: corretto17
 
-  pre_build:
-    commands:
-      - echo "Start build"
-      - chmod +x ./gradlew
-
   build:
     commands:
-      - ./gradlew clean build -x test
-
-  post_build:
-    commands:
-      - echo "Build completed"
-      - cp build/libs/*.jar app.jar
+      - chmod +x gradlew
+      - chmod +x scripts/*.sh   # ✅ 이 줄 추가
+      - ./gradlew build
 
 artifacts:
   files:
+    - build/libs/*.jar
     - appspec.yml
-    - stop.sh
-    - start.sh
-    - health_check.sh
-    - app.jar
+    - scripts/**/*              # ✅ 이것도 같이 넣어줘 (안전)
