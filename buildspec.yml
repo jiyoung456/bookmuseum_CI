@@ -8,8 +8,11 @@ phases:
   build:
     commands:
       - chmod +x gradlew
+      - chmod +x scripts/*.sh   # ✅ 이 줄 추가
       - ./gradlew build
 
 artifacts:
   files:
     - build/libs/*.jar
+    - appspec.yml
+    - scripts/**/*              # ✅ 이것도 같이 넣어줘 (안전)
